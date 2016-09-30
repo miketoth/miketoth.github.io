@@ -10,7 +10,7 @@
   <body>
  <div class="container">
       <div class="header clearfix">
-        <h3 class="text-muted">Trade Magic Cards</h3>
+        <h3 class="text-muted">Website!</h3>
       </div>
 
       <div class="jumbotron">
@@ -27,24 +27,22 @@
     </div>
 
   </body>
-  <script src="./AllSets.js"></script>
+  <script src="./guccinames.js"></script>
   <script> 
     var my_autocomplete = new autoComplete({
       selector: 'input',
       minChars: 2,
       source: function(term, suggest) {
         term = term.toLowerCase();
-        var choices = allsets.KLD.cards;
+        var choices = cards;
         var matches = [];
         choices.forEach(function(choice) {
-          if(~choice.name.toLowerCase().indexOf(term)) {
-            matches.push(choice.name);
+          if(~choice.toLowerCase().indexOf(term)) {
+            matches.push(choice);
           }
         });
         suggest(matches);
       }
     });
-    // load json list of cards
-    console.log(allsets.KLD.cards[40].name);
   </script>
 </html>
