@@ -1,68 +1,79 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="./auto-complete.css">
-    <script src="./auto-complete.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCyG41xbIYQ8IrlTqK4zE1YgKzOAw9lvHE",
+        authDomain: "hours-1248a.firebaseapp.com",
+        databaseURL: "https://hours-1248a.firebaseio.com",
+        storageBucket: "",
+        messagingSenderId: "465621159819"
+      };
+      firebase.initializeApp(config);
+
+      var database = firebase.database();
+    </script>
+    <title> Time Tracker </title>
   </head>
   <body>
- <div class="container">
-      <div class="header clearfix">
-        <h3 class="text-muted">Website!</h3>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="#">800 Hours -> 48000 Minutes -> 2880000 Seconds</a>
+        </div>
       </div>
-
-      <div class="jumbotron">
-        <h1>Trade Magic Cards</h1>
-        <p>
-          <div class="input-group input-group-lg">
-            <input id="search_button" type="text" class="form-control" placeholder="e.g. Grizzly Bear">
-            <span class="input-group-btn">
-              <button class="btn btn-default" onclick=loadCard() type="button">Search!</button>
-            </span>
-          </div>
-        </p>
-      </div>
-      <center>
-        <img id="card_img"/>
-      </center>
+    </nav>
+   <div class="container">
+    <div class="jumbotron">
+      <h1 id="time"></h1>
+      <button id="timerButton" type="button" class="btn btn-default" onclick=toggleTimer()>Start</button>
     </div>
-
   </body>
-  <script src="./cardNames.js"></script>
-  <script src="./AllSets.js"></script>
-  <script> 
-    function loadCard() {
-      console.log('loading card');
-      var cardName = document.getElementById('search_button').value;
-      var keys = Object.keys(allsets);
-      var multiverseid;
-      keys.forEach(function(key) {
-        allsets[key].cards.forEach(function(card) {
-          if(card.name === cardName) {
-            console.log(card.name);
-            console.log(card.multiverseid);
-            multiverseid = card.multiverseid;
-          }
-        });
+  <script>
+    // populate the time
+    window.onload = function() {
+      database.ref().once("value").then(function(snapshot) {
+        var display = document.querySelector("#time")
+        display.textContent = snapshot.val().time;
       });
-      // load card
-      document.getElementById("card_img").src = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + multiverseid + "&type=card"
     }
-    var my_autocomplete = new autoComplete({
-      selector: 'input',
-      minChars: 2,
-      source: function(term, suggest) {
-        term = term.toLowerCase();
-        var choices = cards;
-        var matches = [];
-        choices.forEach(function(choice) {
-          if(~choice.toLowerCase().indexOf(term)) {
-            matches.push(choice);
-          }
+    function toggleTimer() {
+      var buttonName = document.getElementById("timerButton");
+      if (buttonName.innerHTML === "Start") {
+        database.ref().once("value").then(function(snapshot) {
+          var display = document.querySelector("#time");
+          startTimer(snapshot.val().time, display);
         });
-        suggest(matches);
-      }
-    });
+        document.querySelector("#timerButton").innerHTML = "Stop";
+      } else if (buttonName.innerHTML === "Stop") {
+        var currentTime = document.querySelector("#time").innerHTML;
+        database.ref().set({time: currentTime});
+        stopTimer();
+        document.querySelector("#timerButton").innerHTML = "Start";
+      } 
+    }
+    var interval; // lol
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      interval = setInterval(function () {
+        seconds = parseInt(timer); // in case it gets stored as a string
+        display.textContent = seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
+    }
+    function stopTimer() {
+      clearInterval(interval);
+    }
   </script>
 </html>
