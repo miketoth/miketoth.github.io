@@ -1,1 +1,68 @@
-Hello World
+<html>
+    <head>
+        <title>Not a Blog</title>
+    </head>
+    <body style="font-family: sans-serif; max-width: 900px; margin: auto; margin-top: 10px;">
+        <!--
+        <div>
+            <p>
+                Placeholder for github-style activity chart
+            </p>
+        </div>
+        <hr/>
+        -->
+        <div>
+            <h1>
+                Index
+            </h1>
+            <ul>
+                <li><a href="#gitadventures">Git Adventures 9/7/2018</a></li>
+                <!--<li><a href="about.html">About</a></li>-->
+            </ul>
+        </div>
+        <hr/>
+        <div>
+            <p style="text-align: center">
+                <input type="checkbox" style="display:none" />
+                <div id="hidden">
+                    <h1><a id="gitadventures">Git Adventures</a></h1>
+
+                    <p>
+                        Working on a pre-commit hook for git and was trying to figure out what
+                    <pre style="
+                            background: #f4f4f4;
+                            border: 1px solid #ddd;
+                            color: #666;
+                            page-break-inside: avoid;
+                            font-family: monospace;
+                            font-size: 15px;
+                            margin-bottom: 1.6em;
+                            max-width: 100%;
+                            overflow: auto;
+                            display: block;
+                            word-wrap: break-word;">
+                        <code>
+                        if git rev-parse --verify HEAD >/dev/null 2>&1
+                        then
+                            against=HEAD
+                        else
+                            # Initial commit: diff against an empty tree object
+                            against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+                        fi
+                        </code>
+                    </pre>
+                        did. 
+                    </p>
+
+                    <p>
+                        So <code style="font-size: 15px; background: #f4f4f4;">git rev-parse</code> is a plumbing command that tries to help users understand the maze of parameters that are passed by normal porcelin commands <code style="font-size: 15px; background: #f4f4f4;">git log</code> to the plumbing command <code style="font-size: 15px; background: #f4f4f4;">git rev-list</code> which lists git commit objects. Using <code style="font-size: 15px; background: #f4f4f4;">git rev-list</code> reminds me why its a plumbing command. Its output and <code style="font-size: 15px; background: #f4f4f4;">man</code> entry are hard to read at best. <code style="font-size: 15px; background: #f4f4f4;">git rev-parse --verify HEAD</code> is the most user-friendly way to display what commit hash HEAD is currently pointing to.
+
+                    </p>
+                    <p>
+                    But why is that useful? Its also a useful way to tell if a git repository is empty (just initialized) or not. And thats why the SHA <code style="font-size: 15px; background: #f4f4f4;">4b825dc642cb6eb9a060e54bf8d69288fbee4904</code> is so special. It is the representation of an empty git tree object. Its the same across every project; <b>so if you start a new git repo and enable pre-commit hooks against your very first commit, this if-block will make sure your commit is diffed against the correct object.</b> Either the HEAD or if there are no other commits in the project, an empty tree object. 
+                    </p>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
