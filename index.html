@@ -1,8 +1,8 @@
 <html>
     <head>
-        <title>Not a Blog</title>
+        <title>nlog(m)</title>
     </head>
-    <body style="font-family: sans-serif; max-width: 900px; margin: auto; margin-top: 10px;">
+    <body style="font-family: sans-serif; max-width: 900px; margin: auto; margin-top: 30px;font-size: 16px;line-height: 30px;">
         <!--
         <div>
             <p>
@@ -16,7 +16,7 @@
                 Index
             </h1>
             <ul>
-                <li><a href="#gitadventures">Git Adventures 9/7/2018</a></li>
+                <li><a href="#gitrevparse">Understanding git rev-parse 9/7/2018</a></li>
                 <!--<li><a href="about.html">About</a></li>-->
             </ul>
         </div>
@@ -25,7 +25,7 @@
             <p style="text-align: center">
                 <input type="checkbox" style="display:none" />
                 <div id="hidden">
-                    <h1><a id="gitadventures">Git Adventures</a></h1>
+                    <h1><a id="gitrevparse">Understanding git rev-parse</a></h1>
 
                     <p>
                         Working on a pre-commit hook for git and was trying to figure out what
@@ -40,6 +40,7 @@
                             max-width: 100%;
                             overflow: auto;
                             display: block;
+                            line-height: 20px;
                             word-wrap: break-word;">
                         <code>
                         if git rev-parse --verify HEAD >/dev/null 2>&1
