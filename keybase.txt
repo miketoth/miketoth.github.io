@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/miketoth
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://miketoth.github.io
+  * I am miketoth (https://keybase.io/miketoth) on keybase.
+  * I have a public key ASB6JULZ7R--bOIfZDHHhj7NHgnmJUBE3Opz1bY7E3Ndmwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101b06f1357c954242cbb02e8a91ee944023a18750b04b0bd2637e099fe6e6b0dd40a",
+      "host": "keybase.io",
+      "kid": "01207a2542d9ed1fbe6ce21f6431c7863ecd1e09e6254044dcea73d5b63b13735d9b0a",
+      "uid": "45428319c9f16f3ccc7a075cca58e819",
+      "username": "miketoth"
+    },
+    "merkle_root": {
+      "ctime": 1536953238,
+      "hash": "27d07ddbf823a35bdd157c1d66f297fdf92e5c1debff646ac4f83dace7270c9b05ba374c43cf59e7efdde1cdd4f83481e6a78a98606c88236a20d5d9f9ccf8e3",
+      "hash_meta": "2d68ed342a0e2f107772fdab3bd2e4d7b3f1216758030e28b712719dee54c4b1",
+      "seqno": 3611419
+    },
+    "service": {
+      "entropy": "+VMd2ZgRTnBqv/h/YofOaQxJ",
+      "hostname": "miketoth.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "2.5.2"
+  },
+  "ctime": 1536953244,
+  "expire_in": 504576000,
+  "prev": "aa5a6c5393880749cff83631ff0d3148f2043f956c6c3e0808c12131c44218b4",
+  "seqno": 19,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgeiVC2e0fvmziH2Qxx4Y+zR4J5iVARNzqc9W2OxNzXZsKp3BheWxvYWTESpcCE8QgqlpsU5OIB0nP+DYx/w0xSPIEP5VsbD4ICMEhMcRCGLTEIAdRzuZlGX5vPIsxqpFJgaQp88qguidco+J2Txd+gbH/AgHCo3NpZ8RALQjwGFq48eGB5ldKlqIFLMBb3/bV4PR7PWMNmC1ePSCvkNA+Qfd2q5dciFG9WlNbpRqb19qCa9llnTr+v30KAqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEICd0SyVwFQidvLAzgccxUjgMOcwHnnIy5a8V+uO/vSWNo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/miketoth
+
+==================================================================
