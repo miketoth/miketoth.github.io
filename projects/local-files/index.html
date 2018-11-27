@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div>
+      So we can't directly write to a file.<br />
+      Which is fine because it would be a huge security concern.<br />
+      We can save data to a file, prompt the user to download the file, and then prompt the user to upload the file.<br />
+      Seems like it would be hard to do with a smooth UX but if we could do it really well we would likely only need to do it once.<br />
+      <br />
+      After that we can just prompt the user to load or just load from localStorage/cache/ipfs/whatever.<br />
+    </div>
+
+    <br />
+    
+    <button id="create">Create file</button> <br />
+    <input type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+    <script>
+      var textFile = null,
+      makeTextFile = function (text) {
+        var data = new Blob([text], {type: 'text/plain'});
+
+        // If we are replacing a previously generated file we need to
+        // manually revoke the object URL to avoid memory leaks.
+        if (textFile !== null) {
+          window.URL.revokeObjectURL(textFile);
+        }
+
+        textFile = window.URL.createObjectURL(data);
+
+        return textFile;
+      };
+
+      var create = document.getElementById('create');
+
+      create.addEventListener('click', function () {
+          const link = document.createElement('a');
+          link.setAttribute('download', 'info.txt');
+          link.href = makeTextFile("super yo");
+          document.body.appendChild(link);
+
+          // wait for the link to be added to the document
+          window.requestAnimationFrame(function () {
+            const event = new MouseEvent('click');
+              link.dispatchEvent(event);
+              document.body.removeChild(link);
+            });
+        }, false);
+
+      function handleFileSelect(evt) {
+          let files = evt.target.files; // FileList object
+
+          // files is a FileList of File objects. List some properties.
+          let output = [];
+          for (let i = 0, f; f = files[i]; i++) {
+            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                        f.size, ' bytes, last modified: ',
+                        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                        '</li>');
+          }
+          document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+        }
+
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    </script>
+  </body>
+</html>
