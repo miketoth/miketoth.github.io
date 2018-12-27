@@ -35,13 +35,16 @@
             Was browsing on Stack Overflow and saw a post asking if you could programmatically click a button on a flipkart page. I was initially interested because its definitely something I know how to do and don't see anything wrong with making bots for websites. Lots of websites allow bots and without them a lot of valuable data would stay inaccessible. APIs (with a few exceptions) are basically dead. There's no point relying on a website allowing access to its data programmatically and even if it exists as Twitter has shown, building on top of it is building on top of openly hostile quicksand.
           </p>
           <p>
-            But (as the poster noted) creating links from the JS console doesn't actually fire the onClick event. Even worse, the site is obfuscated in such a way that  
+            But (as the poster noted) creating links from the JS console doesn't actually fire the onClick event. Even worse, the site is obfuscated in such a way that finding the actually function which is called is hard. Writing this wants me to go back to that page and find it. Anyways, event.isTrusted is one of the ways sites defend against low-grade scapers (like the SO poster and I guess myself) from scraping their website. And to be clear, I don't support scraping a website that you don't have permission to. They totally have the right to throttle and blocks bots, suspicious activity, etc and I would do the same if I was working on a website with the traffic and price-watchers that FlipKart has.
           </p>
           <p>
-            
+            event.isTrusted being an immutable property of an event created at inception of an event piqued my curiousity about browser events and how they were created. My thought is if we can find the parameters used to create the event.isTrusted property and then write a function to manipulate those parameters (maybe there is a flag called fromConsole) then we can create an event with isTrusted. I imagine that approach has already been anticipated; however, if I take the time to trace the rabbit hole as deep as it goes maybe I can find a mistake in there. Anyways.
           </p>
           <p>
-            
+            scraping random, hostile websites isn't really the point of this post. Maybe FlipKart isn't even using event.isTrusted. There are a lot of other ways to protect against bots running on your site and SO has a great list of them. The list comes with a precaution of course -- its an arms race but there is no guarantee that you (the website) will win. Browsers, after all, are the users software and there isn't a fool-proof way of determining that your user isn't pretending to be or use something that they are not. (afaik)
+          </p>
+          <p>
+            And what rights do users have on a website. If the analogy is a store, surely there are some rights people in a store have. I don't think thats the best analogy but I guess thats a good place to start.
           </p>
         </div>
         </div>
