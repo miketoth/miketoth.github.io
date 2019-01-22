@@ -31,21 +31,23 @@
           <input type="checkbox" style="display:none" />
           <div id="hidden">
           <h1><a id="eventIsTrusted">event.isTrusted (who is the web for?)</a></h1>
-          <p>
-            Was browsing on Stack Overflow and saw a post asking if you could programmatically click a button on a flipkart page. I was initially interested because its definitely something I know how to do and don't see anything wrong with making bots for websites. Lots of websites allow bots and without them a lot of valuable data would stay inaccessible. APIs (with a few exceptions) are basically dead. There's no point relying on a website allowing access to its data programmatically and even if it exists as Twitter has shown, building on top of it is building on top of openly hostile quicksand.
-          </p>
-          <p>
-            But (as the poster noted) creating links from the JS console doesn't actually fire the onClick event. Even worse, the site is obfuscated in such a way that finding the actually function which is called is hard. Writing this wants me to go back to that page and find it. Anyways, event.isTrusted is one of the ways sites defend against low-grade scapers (like the SO poster and I guess myself) from scraping their website. And to be clear, I don't support scraping a website that you don't have permission to. They totally have the right to throttle and blocks bots, suspicious activity, etc and I would do the same if I was working on a website with the traffic and price-watchers that FlipKart has.
-          </p>
-          <p>
-            event.isTrusted being an immutable property of an event created at inception of an event piqued my curiousity about browser events and how they were created. My thought is if we can find the parameters used to create the event.isTrusted property and then write a function to manipulate those parameters (maybe there is a flag called fromConsole) then we can create an event with isTrusted. I imagine that approach has already been anticipated; however, if I take the time to trace the rabbit hole as deep as it goes maybe I can find a mistake in there. Anyways.
-          </p>
-          <p>
-            scraping random, hostile websites isn't really the point of this post. Maybe FlipKart isn't even using event.isTrusted. There are a lot of other ways to protect against bots running on your site and SO has a great list of them. The list comes with a precaution of course -- its an arms race but there is no guarantee that you (the website) will win. Browsers, after all, are the users software and there isn't a fool-proof way of determining that your user isn't pretending to be or use something that they are not. (afaik)
-          </p>
-          <p>
-            And what rights do users have on a website. If the analogy is a store, surely there are some rights people in a store have. I don't think thats the best analogy but I guess thats a good place to start.
-          </p>
+          <details>
+            <p><summary>
+              Was browsing on Stack Overflow and saw a post asking if you could programmatically click a button on a flipkart page. </summary>I was initially interested because its definitely something I know how to do and don't see anything wrong with making bots for websites. Lots of websites allow bots and without them a lot of valuable data would stay inaccessible. APIs (with a few exceptions) are basically dead. There's no point relying on a website allowing access to its data programmatically and even if it exists as Twitter has shown, building on top of it is building on top of openly hostile quicksand.
+            </p>
+            <p>
+              But (as the poster noted) creating links from the JS console doesn't actually fire the onClick event. Even worse, the site is obfuscated in such a way that finding the actually function which is called is hard. Writing this wants me to go back to that page and find it. Anyways, event.isTrusted is one of the ways sites defend against low-grade scapers (like the SO poster and I guess myself) from scraping their website. And to be clear, I don't support scraping a website that you don't have permission to. They totally have the right to throttle and blocks bots, suspicious activity, etc and I would do the same if I was working on a website with the traffic and price-watchers that FlipKart has.
+            </p>
+            <p>
+              event.isTrusted being an immutable property of an event created at inception of an event piqued my curiousity about browser events and how they were created. My thought is if we can find the parameters used to create the event.isTrusted property and then write a function to manipulate those parameters (maybe there is a flag called fromConsole) then we can create an event with isTrusted. I imagine that approach has already been anticipated; however, if I take the time to trace the rabbit hole as deep as it goes maybe I can find a mistake in there. Anyways.
+            </p>
+            <p>
+              scraping random, hostile websites isn't really the point of this post. Maybe FlipKart isn't even using event.isTrusted. There are a lot of other ways to protect against bots running on your site and SO has a great list of them. The list comes with a precaution of course -- its an arms race but there is no guarantee that you (the website) will win. Browsers, after all, are the users software and there isn't a fool-proof way of determining that your user isn't pretending to be or use something that they are not. (afaik)
+            </p>
+            <p>
+              And what rights do users have on a website. If the analogy is a store, surely there are some rights people in a store have. I don't think thats the best analogy but I guess thats a good place to start.
+            </p>
+          </details>
         </div>
         </div>
 
@@ -55,82 +57,84 @@
           <div id="hidden">
           <h1><a id="localcache">Hyper Local</a></h1>
           <p>
-            <p>
-              An even more local cache than localStorage. And why localStorage is such a bad name. And other stuff.
-            </p>
+            <details>
+              <p>
+                <summary>An even more local cache than localStorage. And why localStorage is such a bad name. And other stuff.</summary>
+              </p>
 
-            <p>
-              localStorage is a terrible name because it is too developer centric -- a user will never and probably should never touch their localStorage.
-            </p>
+              <p>
+                localStorage is a terrible name because it is too developer centric -- a user will never and probably should never touch their localStorage.
+              </p>
 
-            <p>
-              But thats the best we have in terms of "local" control over data. The more local your application is, the more you are empowering you users.
-              All of this is a digression from the specific thing I am writing about
-            </p>
+              <p>
+                But thats the best we have in terms of "local" control over data. The more local your application is, the more you are empowering you users.
+                All of this is a digression from the specific thing I am writing about
+              </p>
 
-            <p>
-            Check out the demo here: <a href="./projects/local-files/index.html">link</a>
-            What we want to do is create a seamless experience for users who sometimes use local data files and other times use a remote data file. I'm making up a few of the terms of the fly but hopefully they will make sense by the end of it. Currently, when a user navigates to a web page (at least) 2 things are loaded. The web application (why all web pages are now applications is 1. makes no sense and 2. I'll talk more about later) and the users data. Usually there is some authentication before you can get to the data and certain parts of the application but the number of hoops you jump through isn't what we are interested in here. The point is the **experience**. Its load application (waiting) and then load the data the user wants to manipulate/view/create/whatever inside that application. 
-            </p>
+              <p>
+              Check out the demo here: <a href="./projects/local-files/index.html">link</a>
+              What we want to do is create a seamless experience for users who sometimes use local data files and other times use a remote data file. I'm making up a few of the terms of the fly but hopefully they will make sense by the end of it. Currently, when a user navigates to a web page (at least) 2 things are loaded. The web application (why all web pages are now applications is 1. makes no sense and 2. I'll talk more about later) and the users data. Usually there is some authentication before you can get to the data and certain parts of the application but the number of hoops you jump through isn't what we are interested in here. The point is the **experience**. Its load application (waiting) and then load the data the user wants to manipulate/view/create/whatever inside that application. 
+              </p>
 
-            <p>
-              It doesn't have to be like this. Data should be able to live wherever. On the users computer, in a 3rd party storage solution, on the application server, somewhere else on the local network, whatever. Splitting a users data from their applications will be the defining technical shift of the next decade. We don't have to settle for these bloated, crappy apps deciding what data they need to operate and store. We can and should decide. We need to be in control of our applications. If one so much as makes a network request, I want to be able to inspect and approve every piece of data sent over the wire. Is that too much to ask for? You are using my computing resources and for the most part we have no idea what they are used for. Some are wasted on things I don't want or need, others are wasted maliciously (ads, spyware, mining). 
-            </p>
+              <p>
+                It doesn't have to be like this. Data should be able to live wherever. On the users computer, in a 3rd party storage solution, on the application server, somewhere else on the local network, whatever. Splitting a users data from their applications will be the defining technical shift of the next decade. We don't have to settle for these bloated, crappy apps deciding what data they need to operate and store. We can and should decide. We need to be in control of our applications. If one so much as makes a network request, I want to be able to inspect and approve every piece of data sent over the wire. Is that too much to ask for? You are using my computing resources and for the most part we have no idea what they are used for. Some are wasted on things I don't want or need, others are wasted maliciously (ads, spyware, mining). 
+              </p>
 
-            <p>
-              I'll walk though the code here
-            </p>
+              <p>
+                I'll walk though the code here
+              </p>
 
-            <pre>
-              <code>
-      var textFile = null,
-      makeTextFile = function (text) {
-        var data = new Blob([text], {type: 'text/plain'});
+              <pre>
+                <code>
+        var textFile = null,
+        makeTextFile = function (text) {
+          var data = new Blob([text], {type: 'text/plain'});
 
-        // If we are replacing a previously generated file we need to
-        // manually revoke the object URL to avoid memory leaks.
-        if (textFile !== null) {
-          window.URL.revokeObjectURL(textFile);
-        }
-
-        textFile = window.URL.createObjectURL(data);
-
-        return textFile;
-      };
-
-      var create = document.getElementById('create');
-
-      create.addEventListener('click', function () {
-          const link = document.createElement('a');
-          link.setAttribute('download', 'info.txt');
-          link.href = makeTextFile("super yo");
-          document.body.appendChild(link);
-
-          // wait for the link to be added to the document
-          window.requestAnimationFrame(function () {
-            const event = new MouseEvent('click');
-              link.dispatchEvent(event);
-              document.body.removeChild(link);
-            });
-        }, false);
-
-      function handleFileSelect(evt) {
-          let files = evt.target.files; // FileList object
-
-          // files is a FileList of File objects. List some properties.
-          let output = [];
-          for (let i = 0, f; f = files[i]; i++) {
-            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                        f.size, ' bytes, last modified: ',
-                        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                        '</li>');
+          // If we are replacing a previously generated file we need to
+          // manually revoke the object URL to avoid memory leaks.
+          if (textFile !== null) {
+            window.URL.revokeObjectURL(textFile);
           }
-          document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-        }
 
-        document.getElementById('files').addEventListener('change', handleFileSelect, false);
-              </code>
-            </pre>
+          textFile = window.URL.createObjectURL(data);
+
+          return textFile;
+        };
+
+        var create = document.getElementById('create');
+
+        create.addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.setAttribute('download', 'info.txt');
+            link.href = makeTextFile("super yo");
+            document.body.appendChild(link);
+
+            // wait for the link to be added to the document
+            window.requestAnimationFrame(function () {
+              const event = new MouseEvent('click');
+                link.dispatchEvent(event);
+                document.body.removeChild(link);
+              });
+          }, false);
+
+        function handleFileSelect(evt) {
+            let files = evt.target.files; // FileList object
+
+            // files is a FileList of File objects. List some properties.
+            let output = [];
+            for (let i = 0, f; f = files[i]; i++) {
+              output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                          f.size, ' bytes, last modified: ',
+                          f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                          '</li>');
+            }
+            document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+          }
+
+          document.getElementById('files').addEventListener('change', handleFileSelect, false);
+                </code>
+              </pre>
+            </details>
           </p>
         </div>
         </div>
@@ -144,28 +148,30 @@
                     <h1><a id="gitrevparse">Understanding git rev-parse</a></h1>
 
                     <p>
-                        Working on a pre-commit hook for git and was trying to figure out what
-                    <pre>
-                        <code>
-                        if git rev-parse --verify HEAD >/dev/null 2>&1
-                        then
-                            against=HEAD
-                        else
-                            # Initial commit: diff against an empty tree object
-                            against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
-                        fi
-                        </code>
-                    </pre>
-                        did. 
-                    </p>
+                      <details>
+                          <summary>Working on a pre-commit hook for git and was trying to figure out what</summary>
+                      <pre>
+                          <code>
+                          if git rev-parse --verify HEAD >/dev/null 2>&1
+                          then
+                              against=HEAD
+                          else
+                              # Initial commit: diff against an empty tree object
+                              against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+                          fi
+                          </code>
+                      </pre>
+                          did. 
+                      </p>
 
-                    <p>
-                        So <code class="inline-code">git rev-parse</code> is a plumbing command that tries to help users understand the maze of parameters that are passed by normal porcelin commands <code class="inline-code">git log</code> to the plumbing command <code class="inline-code">git rev-list</code> which lists git commit objects. Using <code class="inline-code">git rev-list</code> reminds me why its a plumbing command. Its output and <code class="inline-code">man</code> entry are hard to read at best. <code class="inline-code">git rev-parse --verify HEAD</code> is the most user-friendly way to display what commit hash HEAD is currently pointing to.
+                      <p>
+                          So <code class="inline-code">git rev-parse</code> is a plumbing command that tries to help users understand the maze of parameters that are passed by normal porcelin commands <code class="inline-code">git log</code> to the plumbing command <code class="inline-code">git rev-list</code> which lists git commit objects. Using <code class="inline-code">git rev-list</code> reminds me why its a plumbing command. Its output and <code class="inline-code">man</code> entry are hard to read at best. <code class="inline-code">git rev-parse --verify HEAD</code> is the most user-friendly way to display what commit hash HEAD is currently pointing to.
 
-                    </p>
-                    <p>
-                    But why is that useful? Its also a useful way to tell if a git repository is empty (just initialized) or not. And thats why the SHA <code class="inline-code">4b825dc642cb6eb9a060e54bf8d69288fbee4904</code> is so special. It is the representation of an empty git tree object. Its the same across every project; <b>so if you start a new git repo and enable pre-commit hooks against your very first commit, this if-block will make sure your commit is diffed against the correct object.</b> Either the HEAD or if there are no other commits in the project, an empty tree object. 
-                    </p>
+                      </p>
+                      <p>
+                      But why is that useful? Its also a useful way to tell if a git repository is empty (just initialized) or not. And thats why the SHA <code class="inline-code">4b825dc642cb6eb9a060e54bf8d69288fbee4904</code> is so special. It is the representation of an empty git tree object. Its the same across every project; <b>so if you start a new git repo and enable pre-commit hooks against your very first commit, this if-block will make sure your commit is diffed against the correct object.</b> Either the HEAD or if there are no other commits in the project, an empty tree object. 
+                      </p>
+                  </details>
                 </p>
             </div>
         </div>
