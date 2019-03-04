@@ -1,9 +1,6 @@
 2/22/2019
 
-### Thoughts from [this HN post](https://news.ycombinator.com/item?id=18715416)
-
-Tips:
-
+tips:
 - Just write
 - Be regular
 - Write to the trends
@@ -12,8 +9,9 @@ Tips:
 - Mix short and long posts
 
 ideas:
-
 - deep dive only content site
+
+### Thoughts from [this HN post](https://news.ycombinator.com/item?id=18715416)
 
 One of the things Ferrucio says in his reflection is that there are no rules. I think that is an important senitment to have especially when giving advice. Advice is guidence, direction, and focus. Focus is a tradeoff -- as we pay more attention to one thing we naturally pay less attention to others. However, as an aspiring writer my biggest challenge is not exploration, ideas, or creativity but focus, consistency, and determination. Its too easy to take a break, start a new project, or allow distractions to grab my attention. And is this sentence, this blog, this goal a distraction itself? There is no great wisdom here or even a better re-statement of well-worn ideas. Its just a meandering of a mind that hasn't found where to lay its head.
 
